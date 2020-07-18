@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" >
+  <a class="navbar-brand" [routerLink]="['/home']" routerLinkActive="router-link-active"  >Dating App</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto" *ngIf="loggedIn()">
+      <li class="nav-item">
+        <a [routerLink]="['/members']" routerLinkActive="router-link-active"  class="nav-link" href="#"> Matches </a>
+      </li>
+      <li class="nav-item">
+        <a [routerLink]="['/lists']" routerLinkActive="router-link-active"  class="nav-link" href="#">List</a>
+      </li>
+      <li class="nav-item">
+        <a [routerLink]="['/messages']" routerLinkActive="router-link-active" href="#" class="nav-link"> Messages </a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav navbar-right" *ngIf="loggedIn()">
+      
+      <li class="nav-item dropdown" dropdown>
+        <a class="nav-link dropdown-toggle" (click)=false; dropdownToggle>Welcome {{authservice.decodedToken?.unique_name |titlecase }}</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01" *dropdownMenu>
+          <a [routerLink]="['/member/edit']" class="dropdown-item" href="#"><i class="fa fa-user"></i>Edit Profile</a>
+          <a class="dropdown-item" (click)="logout()"  href="#"><i class="fa fa-sign-out"></i>Logout</a>
+        </div>
+      </li>
+    </ul>  
+  
+
+    <form *ngIf="!loggedIn()" #loginForm='ngForm' action=""  class="navbar-form navbar-right form-inline" (ngSubmit)="login(loginForm)">
+      <div class="form-group mr-2">
+        <input type="text" placeholder="Username" 
+        #username ="ngModel"
+        name="username" class="form-control" required [(ngModel)]="model.username">
+      </div>
+      
+      <div class="form-group">
+        <input type="password" placeholder="Password" #password="ngModel" required
+        name="password" class="form-control mr-2"[(ngModel)]="model.password">
+      </div>
+      <button type="submit" class="btn btn-success mr-2" [disabled]="!loginForm.valid">Sign In</button>
+      </form>
+          
+  </div>
+</nav>
+
+
+
+
+
