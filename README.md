@@ -12,4 +12,5 @@ Tools needed to locally deploy App
 Angular CLI
 NodeJs
 .NETCore Runtime
+.NETCore SDK
 ```
